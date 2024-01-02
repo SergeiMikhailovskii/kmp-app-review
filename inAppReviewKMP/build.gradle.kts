@@ -2,7 +2,11 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+    id("maven-publish")
 }
+
+group = "com.mikhailovskii.kmp"
+version = System.getenv("LIBRARY_VERSION") ?: libs.versions.pluginVersion.get()
 
 kotlin {
     androidTarget { publishLibraryVariants("release", "debug") }
@@ -11,9 +15,7 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        version = "1.0"
+        version = project.version.toString()
         ios.deploymentTarget = "12.0"
         podfile = project.file("../iosApp/Podfile")
         framework {
@@ -27,8 +29,6 @@ kotlin {
             implementation(libs.review.ktx)
             implementation(libs.coroutines.play.services)
         }
-        commonMain.dependencies {
-        }
     }
 }
 
@@ -37,5 +37,27 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 21
+    }
+}
+
+publishing {
+    publications {
+        matching {
+            return@matching it.name in listOf("iosArm64", "iosX64", "kotlinMultiplatform")
+        }.all {
+            tasks.withType<AbstractPublishToMaven>()
+                .matching { it.publication == this@all }
+                .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
+        }
+    }
+    repositories {
+        maven {
+            name = "kmp-in-app-review"
+            url = uri("https://maven.pkg.github.com/SergeiMikhailovskii/kmp-app-review")
+            credentials {
+                username = System.getenv("GITHUB_USER")
+                password = System.getenv("GITHUB_API_KEY")
+            }
+        }
     }
 }
