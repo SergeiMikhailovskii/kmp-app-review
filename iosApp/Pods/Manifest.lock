@@ -1,0 +1,16 @@
+PODS:
+  - inAppReviewKMP (1.0)
+
+DEPENDENCIES:
+  - inAppReviewKMP (from `../inAppReviewKMP`)
+
+EXTERNAL SOURCES:
+  inAppReviewKMP:
+    :path: "../inAppReviewKMP"
+
+SPEC CHECKSUMS:
+  inAppReviewKMP: d1b75541d025283b9b1cc1ad99bce05da5280d40
+
+PODFILE CHECKSUM: 889795db62fae3d3969e3ce4ef9347a253b6e667
+
+COCOAPODS: 1.13.0

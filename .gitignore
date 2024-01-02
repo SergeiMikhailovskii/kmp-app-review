@@ -1,0 +1,7 @@
+build/
+.gradle/
+*.DS_Store
+.idea/
+local.properties
+inAppReviewKMP/inAppReviewKMP.podspec
+xcuserdata/

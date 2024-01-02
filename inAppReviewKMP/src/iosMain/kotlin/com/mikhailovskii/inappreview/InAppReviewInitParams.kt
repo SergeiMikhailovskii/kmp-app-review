@@ -1,0 +1,3 @@
+package com.mikhailovskii.inappreview
+
+actual class InAppReviewInitParams
