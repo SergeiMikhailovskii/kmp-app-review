@@ -15,6 +15,8 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
+        summary = "in-app-review"
+        homepage = "https://github.com/SergeiMikhailovskii/kmp-app-review"
         version = project.version.toString()
         ios.deploymentTarget = "12.0"
         podfile = project.file("../iosApp/Podfile")

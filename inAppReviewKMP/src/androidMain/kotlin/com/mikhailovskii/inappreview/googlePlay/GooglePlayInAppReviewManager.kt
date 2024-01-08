@@ -1,9 +1,10 @@
-package com.mikhailovskii.inappreview
+package com.mikhailovskii.inappreview.googlePlay
 
 import com.google.android.play.core.review.ReviewManagerFactory
+import com.mikhailovskii.inappreview.InAppReviewDelegate
 import kotlinx.coroutines.tasks.await
 
-actual class InAppReviewManagerImpl actual constructor(private val params: InAppReviewInitParams) : InAppReviewManager {
+class GooglePlayInAppReviewManager(private val params: GooglePlayInAppReviewInitParams) : InAppReviewDelegate {
 
     override suspend fun requestReview() {
         val manager = ReviewManagerFactory.create(params.activity)

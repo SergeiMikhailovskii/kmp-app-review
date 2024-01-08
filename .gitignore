@@ -5,3 +5,5 @@ build/
 local.properties
 inAppReviewKMP/inAppReviewKMP.podspec
 xcuserdata/
+iosApp/Podfile.lock
+iosApp/Pods

@@ -1,0 +1,5 @@
+package com.mikhailovskii.inappreview.params
+
+import com.mikhailovskii.inappreview.googlePlay.GooglePlayInAppReviewInitParams
+
+actual typealias DefaultInAppReviewInitParams = GooglePlayInAppReviewInitParams
