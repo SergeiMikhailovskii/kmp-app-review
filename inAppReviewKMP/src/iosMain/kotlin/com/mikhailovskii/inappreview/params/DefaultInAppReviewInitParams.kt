@@ -1,3 +1,5 @@
 package com.mikhailovskii.inappreview.params
 
-actual class DefaultInAppReviewInitParams : InAppReviewInitParams
+import com.mikhailovskii.inappreview.appStore.AppStoreInAppReviewInitParams
+
+actual typealias DefaultInAppReviewInitParams = AppStoreInAppReviewInitParams
