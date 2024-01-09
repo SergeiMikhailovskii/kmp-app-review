@@ -15,6 +15,8 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
+        summary = "in-app-review"
+        homepage = "https://github.com/SergeiMikhailovskii/kmp-app-review"
         version = project.version.toString()
         ios.deploymentTarget = "12.0"
         podfile = project.file("../iosApp/Podfile")
@@ -37,6 +39,10 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 21
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
