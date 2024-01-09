@@ -10,9 +10,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mikhailovskii.inappreviewkmp_shared.AndroidServiceLocator
+import com.mikhailovskii.inappreviewkmp_shared.ReviewComponent
 
 class MainActivity : ComponentActivity() {
 
@@ -24,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    Content()
                 }
             }
         }
@@ -43,11 +45,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Content() {
+    val reviewComponent = remember { ReviewComponent() }
+
     Column {
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = reviewComponent::requestInAppReview) {
             Text("Rate in app")
         }
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = reviewComponent::requestInMarketReview) {
             Text("Rate in market")
         }
     }

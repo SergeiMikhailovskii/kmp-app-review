@@ -1,0 +1,5 @@
+package com.mikhailovskii.inappreviewkmp_shared
+
+import com.mikhailovskii.inappreview.params.DefaultInAppReviewInitParams
+
+expect fun getDefaultParams(): DefaultInAppReviewInitParams

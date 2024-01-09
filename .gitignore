@@ -7,3 +7,4 @@ inAppReviewKMP/inAppReviewKMP.podspec
 xcuserdata/
 iosApp/Podfile.lock
 iosApp/Pods
+/inAppReviewKMP-sample/inAppReviewKMP_sample.podspec

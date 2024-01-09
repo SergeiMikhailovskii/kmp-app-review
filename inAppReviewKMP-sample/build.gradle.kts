@@ -30,6 +30,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.inAppReviewKMP)
+            implementation(libs.coroutines.core)
         }
     }
 }
