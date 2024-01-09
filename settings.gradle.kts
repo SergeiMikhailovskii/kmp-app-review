@@ -15,5 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "InAppReview"
-include(":androidApp")
-include(":inAppReviewKMP")
+include(":androidApp", ":inAppReviewKMP", ":inAppReviewKMP-sample")
