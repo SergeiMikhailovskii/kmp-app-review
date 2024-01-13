@@ -1,6 +1,7 @@
 package com.mikhailovskii.inappreview.appStore
 
 import com.mikhailovskii.inappreview.InAppReviewDelegate
+import com.mikhailovskii.inappreview.ReviewCode
 import com.mikhailovskii.inappreview.systemVersionMoreOrEqualThan
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,7 +13,7 @@ import platform.UIKit.UIWindowScene
 
 class AppStoreInAppReviewManager(private val params: AppStoreInAppReviewInitParams) : InAppReviewDelegate {
 
-    override suspend fun requestInAppReview(): Flow<Int> = flow {
+    override suspend fun requestInAppReview(): Flow<ReviewCode> = flow {
         if (systemVersionMoreOrEqualThan("14.0")) {
             val scene = UIApplication.sharedApplication.connectedScenes.map { it as UIWindowScene }
                 .first { it.activationState == UISceneActivationStateForegroundActive }
@@ -20,7 +21,7 @@ class AppStoreInAppReviewManager(private val params: AppStoreInAppReviewInitPara
         } else {
             SKStoreReviewController.requestReview()
         }
-        emit(0)
+        emit(ReviewCode.NO_ERROR)
     }
 
     override suspend fun requestInMarketReview() {
