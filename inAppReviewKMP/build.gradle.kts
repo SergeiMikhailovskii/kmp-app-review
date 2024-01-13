@@ -31,6 +31,9 @@ kotlin {
             implementation(libs.review.ktx)
             implementation(libs.coroutines.play.services)
         }
+        commonMain.dependencies {
+            implementation(libs.coroutines.core)
+        }
     }
 }
 
