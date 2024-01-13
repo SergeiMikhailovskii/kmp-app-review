@@ -13,6 +13,8 @@ import platform.UIKit.UIWindowScene
 
 class AppStoreInAppReviewManager(private val params: AppStoreInAppReviewInitParams) : InAppReviewDelegate {
 
+    override fun init() {}
+
     override suspend fun requestInAppReview(): Flow<ReviewCode> = flow {
         if (systemVersionMoreOrEqualThan("14.0")) {
             val scene = UIApplication.sharedApplication.connectedScenes.map { it as UIWindowScene }
@@ -24,8 +26,9 @@ class AppStoreInAppReviewManager(private val params: AppStoreInAppReviewInitPara
         emit(ReviewCode.NO_ERROR)
     }
 
-    override suspend fun requestInMarketReview() {
+    override suspend fun requestInMarketReview() = flow {
         val url = NSURL(string = "https://apps.apple.com/app/${params}?action=write-review")
         UIApplication.sharedApplication.openURL(url)
+        emit(ReviewCode.NO_ERROR)
     }
 }
