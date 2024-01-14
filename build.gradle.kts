@@ -6,3 +6,9 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform).apply(false)
     alias(libs.plugins.kotlinCocoapods).apply(false)
 }
+
+tasks.register("buildAndPublish", DefaultTask::class) {
+    dependsOn(":inAppReviewKMP:build")
+    dependsOn(":inAppReviewKMP:publish")
+    tasks.findByPath(":inAppReviewKMP:publish")?.mustRunAfter(":inAppReviewKMP:build")
+}
