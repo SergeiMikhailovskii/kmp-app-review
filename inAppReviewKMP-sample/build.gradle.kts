@@ -28,6 +28,9 @@ kotlin {
     }
     
     sourceSets {
+        androidMain.dependencies {
+            implementation(libs.androidx.activity)
+        }
         commonMain.dependencies {
             implementation(projects.inAppReviewKMP)
             implementation(libs.coroutines.core)

@@ -11,9 +11,15 @@ class ReviewComponent {
         getDefaultReviewManager(getDefaultParams())
     }
 
+    fun init() {
+        defaultReviewManager.init()
+    }
+
     fun requestInAppReview() {
         GlobalScope.launch {
-            defaultReviewManager.requestInAppReview()
+            defaultReviewManager.requestInAppReview().collect {
+                println("Result code=$it")
+            }
         }
     }
 

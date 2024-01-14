@@ -1,9 +1,9 @@
 package com.mikhailovskii.inappreviewkmp_shared
 
 import android.annotation.SuppressLint
-import android.app.Activity
+import androidx.activity.ComponentActivity
 
 @SuppressLint("StaticFieldLeak")
 object AndroidServiceLocator {
-    var activity: Activity? = null
+    var activity: ComponentActivity? = null
 }
