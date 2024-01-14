@@ -5,11 +5,13 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.mikhailovskii.inappreview.InAppReviewDelegate
 import com.mikhailovskii.inappreview.ReviewCode
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 
+@OptIn(DelicateCoroutinesApi::class)
 class AppGalleryInAppReviewManager(
     private val params: AppGalleryInAppReviewInitParams
 ) : InAppReviewDelegate {
