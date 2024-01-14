@@ -39,7 +39,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.inAppReviewKMPSample)
+    implementation(projects.inAppReviewKmpSample)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
