@@ -13,8 +13,6 @@ import platform.UIKit.UIWindowScene
 
 class AppStoreInAppReviewManager(private val params: AppStoreInAppReviewInitParams) : InAppReviewDelegate {
 
-    override fun init() {}
-
     override suspend fun requestInAppReview(): Flow<ReviewCode> = flow {
         if (systemVersionMoreOrEqualThan("14.0")) {
             val scene = UIApplication.sharedApplication.connectedScenes.map { it as UIWindowScene }

@@ -4,7 +4,7 @@ import com.mikhailovskii.inappreview.params.DefaultInAppReviewInitParams
 import kotlinx.coroutines.flow.Flow
 
 interface InAppReviewDelegate {
-    fun init()
+    fun init() {}
     suspend fun requestInAppReview(): Flow<ReviewCode>
     suspend fun requestInMarketReview(): Flow<ReviewCode>
 }

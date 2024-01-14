@@ -13,8 +13,6 @@ import kotlinx.coroutines.tasks.await
 
 class GooglePlayInAppReviewManager(private val params: GooglePlayInAppReviewInitParams) : InAppReviewDelegate {
 
-    override fun init() {}
-
     override suspend fun requestInAppReview(): Flow<ReviewCode> = flow {
         val activity = params.activity
         val manager = ReviewManagerFactory.create(activity)

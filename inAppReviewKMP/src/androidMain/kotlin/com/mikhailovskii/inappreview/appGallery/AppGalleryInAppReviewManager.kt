@@ -5,11 +5,13 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.mikhailovskii.inappreview.InAppReviewDelegate
 import com.mikhailovskii.inappreview.ReviewCode
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 
 class AppGalleryInAppReviewManager(
-    private val params: HuaweiInAppReviewInitParams
+    private val params: AppGalleryInAppReviewInitParams
 ) : InAppReviewDelegate {
 
     private val resultFlow = MutableSharedFlow<ReviewCode>()
@@ -21,7 +23,7 @@ class AppGalleryInAppReviewManager(
         activityResult =
             params.activity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 val resultCode = result.resultCode
-                resultFlow.tryEmit(reviewCodeMapper(resultCode))
+                GlobalScope.launch { resultFlow.emit(reviewCodeMapper(resultCode)) }
             }
     }
 
