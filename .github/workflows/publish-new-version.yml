@@ -32,10 +32,6 @@ jobs:
 
       - name: Build and publish
         run: |
-          echo ${{ env.LIBRARY_VERSION }}
-
-      - name: Build and publish
-        run: |
           ./gradlew buildAndPublish --no-daemon
 
       - name: Create tag

@@ -32,7 +32,7 @@ kotlin {
             implementation(libs.androidx.activity)
         }
         commonMain.dependencies {
-            implementation(projects.inAppReviewKMP)
+            implementation(projects.inAppReviewKmp)
             implementation(libs.coroutines.core)
         }
     }

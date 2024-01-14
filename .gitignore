@@ -3,8 +3,8 @@ build/
 *.DS_Store
 .idea/
 local.properties
-inAppReviewKMP/inAppReviewKMP.podspec
+in-app-review-kmp/in_app_review_kmp.podspec
 xcuserdata/
 iosApp/Podfile.lock
 iosApp/Pods
-/inAppReviewKMP-sample/inAppReviewKMP_sample.podspec
+in-app-review-kmp-sample/in_app_review_kmp_sample.podspec

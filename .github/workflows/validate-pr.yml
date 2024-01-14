@@ -5,7 +5,6 @@ on:
       - 'master'
 jobs:
   build_project:
-    if: startsWith(github.head_ref, 'renovate')
     runs-on: macos-latest
     env:
       GITHUB_USER: ${{ secrets.USER }}
@@ -25,4 +24,4 @@ jobs:
 
       - name: Build
         run: |
-          ./gradlew :inAppReviewKMP:build --no-daemon
+          ./gradlew :in-app-review-kmp:build --no-daemon
