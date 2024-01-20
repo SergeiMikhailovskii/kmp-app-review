@@ -11,8 +11,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.mikhailovskii.inappreviewkmp_shared.AndroidServiceLocator
-import com.mikhailovskii.inappreviewkmp_shared.ReviewComponent
+import com.mikhailovskii.inappreviewkmp_sample.AndroidServiceLocator
+import com.mikhailovskii.inappreviewkmp_sample.ReviewComponent
 
 class MainActivity : ComponentActivity() {
 

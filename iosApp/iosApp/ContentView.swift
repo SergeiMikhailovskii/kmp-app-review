@@ -1,15 +1,22 @@
 import SwiftUI
-import inAppReviewKMP
+import inAppReviewKMP_sample
 
 struct ContentView: View {
+    
+    private let reviewComponent = ReviewComponent()
 
 	var body: some View {
-        Button {
-            InAppReviewManagerImpl(params: InAppReviewInitParams()).requestReview { error in
-                print("Error =\(error)")
+        VStack {
+            Button {
+                reviewComponent.requestInAppReview()
+            } label: {
+                Text("In app review")
             }
-        } label: {
-            Text("Review app")
+            Button {
+                reviewComponent.requestInMarketReview()
+            } label: {
+                Text("In market review")
+            }
         }
 	}
 }

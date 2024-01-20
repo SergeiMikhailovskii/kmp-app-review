@@ -1,4 +1,4 @@
-package com.mikhailovskii.inappreviewkmp_shared
+package com.mikhailovskii.inappreviewkmp_sample
 
 import com.mikhailovskii.inappreview.params.DefaultInAppReviewInitParams
 

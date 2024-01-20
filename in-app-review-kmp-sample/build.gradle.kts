@@ -22,7 +22,7 @@ kotlin {
         version = "1.0"
         ios.deploymentTarget = "12.0"
         framework {
-            baseName = "inAppReviewKMP-shared"
+            baseName = "inAppReviewKMP-sample"
             isStatic = true
         }
     }
@@ -39,7 +39,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.mikhailovskii.inappreviewkmp_shared"
+    namespace = "com.mikhailovskii.inappreviewkmp_sample"
     compileSdk = 34
     defaultConfig {
         minSdk = 21
