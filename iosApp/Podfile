@@ -1,5 +1,5 @@
 target 'iosApp' do
   use_frameworks!
   platform :ios, '16.0'
-  pod 'in_app_review_kmp', :path => '../in-app-review-kmp'
+  pod 'in_app_review_kmp_sample', :path => '../in-app-review-kmp-sample'
 end

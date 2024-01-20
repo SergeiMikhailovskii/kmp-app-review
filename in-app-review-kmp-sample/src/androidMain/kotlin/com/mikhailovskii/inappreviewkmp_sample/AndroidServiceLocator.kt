@@ -1,4 +1,4 @@
-package com.mikhailovskii.inappreviewkmp_shared
+package com.mikhailovskii.inappreviewkmp_sample
 
 import android.annotation.SuppressLint
 import androidx.activity.ComponentActivity
