@@ -11,7 +11,7 @@ Android and iOS
 ## How to integrate?
 1) Add the dependency into `commonMain`:
 ```kotlin
-implementation("com.mikhailovskii.kmp:in-app-review-kmp:1.0.4")
+implementation("com.mikhailovskii.kmp:in-app-review-kmp:1.0.5")
 ```
 
 2) Create an instance of class that implements `InAppReviewDelegate` interface.
@@ -19,7 +19,7 @@ implementation("com.mikhailovskii.kmp:in-app-review-kmp:1.0.4")
 
 3) To launch in-app review call
    ```kotlin
-   suspend fun requestInAppReview(): Flow<ReviewCode>
+   fun requestInAppReview(): Flow<ReviewCode>
    ```
 
   By listening the returned flow events u can receive the [ResultCode](https://github.com/SergeiMikhailovskii/kmp-app-review/blob/master/in-app-review-kmp/src/commonMain/kotlin/com/mikhailovskii/inappreview/ReviewCode.kt) which indicates the result the process finished with
@@ -30,7 +30,7 @@ implementation("com.mikhailovskii.kmp:in-app-review-kmp:1.0.4")
   
 3) To launch in-market review call
    ```kotlin
-   suspend fun requestInMarketReview(): Flow<ReviewCode>
+   fun requestInMarketReview(): Flow<ReviewCode>
    ```
 
 ### Note 1

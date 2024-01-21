@@ -24,8 +24,6 @@ class ReviewComponent {
     }
 
     fun requestInMarketReview() {
-        GlobalScope.launch {
-            defaultReviewManager.requestInMarketReview()
-        }
+        defaultReviewManager.requestInMarketReview()
     }
 }

@@ -29,12 +29,12 @@ class AppGalleryInAppReviewManager(
             }
     }
 
-    override suspend fun requestInAppReview(): Flow<ReviewCode> {
+    override fun requestInAppReview(): Flow<ReviewCode> {
         val intent = Intent("com.huawei.appmarket.intent.action.guidecomment")
             .setPackage("com.huawei.appmarket")
         activityResult?.launch(intent)
         return resultFlow
     }
 
-    override suspend fun requestInMarketReview() = requestInAppReview()
+    override fun requestInMarketReview() = requestInAppReview()
 }

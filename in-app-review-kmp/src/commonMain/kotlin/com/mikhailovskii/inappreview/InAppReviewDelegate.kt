@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface InAppReviewDelegate {
     fun init() {}
-    suspend fun requestInAppReview(): Flow<ReviewCode>
-    suspend fun requestInMarketReview(): Flow<ReviewCode>
+    fun requestInAppReview(): Flow<ReviewCode>
+    fun requestInMarketReview(): Flow<ReviewCode>
 }
 
 expect fun getDefaultReviewManager(params: DefaultInAppReviewInitParams): InAppReviewDelegate
