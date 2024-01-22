@@ -11,7 +11,7 @@ Android and iOS
 ## How to integrate?
 1) Add the dependency into `commonMain`:
 ```kotlin
-implementation("com.mikhailovskii.kmp:in-app-review-kmp:1.0.6")
+implementation("com.mikhailovskii.kmp:in-app-review-kmp:1.0.7")
 ```
 
 2) Create an instance of class that implements `InAppReviewDelegate` interface.

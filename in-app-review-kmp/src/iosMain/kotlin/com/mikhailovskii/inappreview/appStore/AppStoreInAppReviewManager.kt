@@ -25,7 +25,7 @@ class AppStoreInAppReviewManager(private val params: AppStoreInAppReviewInitPara
     }
 
     override fun requestInMarketReview() = flow {
-        val url = NSURL(string = "https://apps.apple.com/app/${params}?action=write-review")
+        val url = NSURL(string = "https://apps.apple.com/app/${params.appStoreId}?action=write-review")
         UIApplication.sharedApplication.openURL(url)
         emit(ReviewCode.NO_ERROR)
     }
