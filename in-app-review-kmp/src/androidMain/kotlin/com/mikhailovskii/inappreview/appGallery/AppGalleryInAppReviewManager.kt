@@ -1,5 +1,6 @@
 package com.mikhailovskii.inappreview.appGallery
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,9 +31,13 @@ class AppGalleryInAppReviewManager(
     }
 
     override fun requestInAppReview(): Flow<ReviewCode> {
-        val intent = Intent("com.huawei.appmarket.intent.action.guidecomment")
-            .setPackage("com.huawei.appmarket")
-        activityResult?.launch(intent)
+        try {
+            val intent = Intent("com.huawei.appmarket.intent.action.guidecomment")
+                .setPackage("com.huawei.appmarket")
+            activityResult?.launch(intent)
+        } catch (e: ActivityNotFoundException) {
+            GlobalScope.launch { resultFlow.emit(ReviewCode.STORE_NOT_FOUND) }
+        }
         return resultFlow
     }
 
