@@ -1,6 +1,7 @@
 # kmp-app-review
 
 [![Publish new version](https://github.com/SergeiMikhailovskii/kmp-app-review/actions/workflows/publish-new-version.yml/badge.svg?branch=master)](https://github.com/SergeiMikhailovskii/kmp-app-review/actions/workflows/publish-new-version.yml)
+![GitHub Tag](https://img.shields.io/github/v/tag/SergeiMikhailovskii/kmp-app-review)
 
 ## What is it?
 Library that allows to launch in app (or in market) review from the KMP shared code
@@ -9,15 +10,27 @@ Library that allows to launch in app (or in market) review from the KMP shared c
 Android and iOS
 
 ## How to integrate?
-1) Add the dependency into `commonMain`:
+1) Add the repository in settings.gradle.kts:
 ```kotlin
-implementation("com.mikhailovskii.kmp:in-app-review-kmp:1.0.7")
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri("https://maven.pkg.github.com/SergeiMikhailovskii/kmp-app-review")
+        }
+    }
+}
+```
+2) Add the dependency into `commonMain`:
+```kotlin
+implementation("com.mikhailovskii.kmp:in-app-review-kmp:$latest_tag")
 ```
 
-2) Create an instance of class that implements `InAppReviewDelegate` interface.
+3) Create an instance of class that implements `InAppReviewDelegate` interface.
    Now library supports 3 implementations: `AppGalleryInAppReviewManager`, `AppStoreInAppReviewManager` and `GooglePlayInAppReviewManager` (depends on the market u need).
 
-3) To launch in-app review call
+4) To launch in-app review call
    ```kotlin
    fun requestInAppReview(): Flow<ReviewCode>
    ```
@@ -28,7 +41,7 @@ implementation("com.mikhailovskii.kmp:in-app-review-kmp:1.0.7")
    - For App Gallery used [in-app-comments function](https://developer.huawei.com/consumer/en/doc/AppGallery-connect-Guides/agc-comments-develop-0000001062858332)
    - For App Store used [StoreKit SKStoreReviewViewController](https://developer.apple.com/documentation/storekit/skstorereviewcontroller)
   
-3) To launch in-market review call
+5) To launch in-market review call
    ```kotlin
    fun requestInMarketReview(): Flow<ReviewCode>
    ```
