@@ -1,0 +1,3 @@
+[submodule "kmp-app-review-flutter"]
+	path = kmp-app-review-flutter
+	url = https://github.com/SergeiMikhailovskii/kmp-app-review-flutter
