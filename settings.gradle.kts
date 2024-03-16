@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "InAppReview"
 include(":androidApp", ":in-app-review-kmp", ":in-app-review-kmp-sample")
+include(":in-app-review-kmp-google-play")

@@ -30,8 +30,6 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.androidx.activity)
             implementation(libs.androidx.fragment)
-            implementation(libs.review.ktx)
-            implementation(libs.coroutines.play.services)
         }
         commonMain.dependencies {
             implementation(libs.coroutines.core)
