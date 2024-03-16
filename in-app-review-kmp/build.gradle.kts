@@ -32,7 +32,7 @@ kotlin {
             implementation(libs.androidx.fragment)
         }
         commonMain.dependencies {
-            implementation(libs.coroutines.core)
+            api(libs.coroutines.core)
         }
     }
 }
