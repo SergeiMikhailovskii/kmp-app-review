@@ -37,6 +37,6 @@ android {
     namespace = "com.mikhailovskii.inappreview"
     compileSdk = 34
     defaultConfig {
-        minSdk = 21
+        minSdk = 26
     }
 }

@@ -1,14 +1,14 @@
 package com.mikhailovskii.inappreviewkmp_sample
 
-import com.mikhailovskii.inappreview.getDefaultReviewManager
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 @OptIn(DelicateCoroutinesApi::class)
 class ReviewComponent {
     private val defaultReviewManager by lazy {
-        getDefaultReviewManager(getDefaultParams())
+        getReviewManager()
     }
 
     fun init() {
@@ -24,6 +24,10 @@ class ReviewComponent {
     }
 
     fun requestInMarketReview() {
-        defaultReviewManager.requestInMarketReview()
+        try {
+            defaultReviewManager.requestInMarketReview().catch { it.printStackTrace() }
+        } catch (it: Exception) {
+            it.printStackTrace()
+        }
     }
 }
