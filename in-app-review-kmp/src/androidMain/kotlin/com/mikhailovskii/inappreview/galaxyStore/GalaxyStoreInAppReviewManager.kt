@@ -9,7 +9,7 @@ import android.net.Uri
 import android.os.Build
 import com.mikhailovskii.inappreview.InAppReviewDelegate
 import com.mikhailovskii.inappreview.ReviewCode
-import kotlinx.coroutines.flow.Flow
+import com.mikhailovskii.inappreview.extensions.openMarket
 import kotlinx.coroutines.flow.flow
 
 class GalaxyStoreInAppReviewManager(
@@ -62,7 +62,13 @@ class GalaxyStoreInAppReviewManager(
         }
     }
 
-    override fun requestInMarketReview(): Flow<ReviewCode> {
-        TODO("Not yet implemented")
+    override fun requestInMarketReview() = flow {
+        val context = params.context
+        val packageName = context.packageName
+        context.openMarket(
+            deeplink = "samsungapps://AppRating/$packageName",
+            url = "https://apps.samsung.com/appquery/AppRating.as?appId=$packageName"
+        )
+        emit(ReviewCode.NO_ERROR)
     }
 }
