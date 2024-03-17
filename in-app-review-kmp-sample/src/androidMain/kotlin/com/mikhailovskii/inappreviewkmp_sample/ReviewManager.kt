@@ -1,9 +1,9 @@
 package com.mikhailovskii.inappreviewkmp_sample
 
 import com.mikhailovskii.inappreview.InAppReviewDelegate
-import com.mikhailovskii.inappreview.rustore.RuStoreInAppReviewInitParams
-import com.mikhailovskii.inappreview.rustore.RuStoreInAppReviewManager
+import com.mikhailovskii.inappreview.galaxyStore.GalaxyStoreInAppReviewInitParams
+import com.mikhailovskii.inappreview.galaxyStore.GalaxyStoreInAppReviewManager
 
-actual fun getReviewManager(): InAppReviewDelegate = RuStoreInAppReviewManager(
-    RuStoreInAppReviewInitParams(requireNotNull(AndroidServiceLocator.activity))
+actual fun getReviewManager(): InAppReviewDelegate = GalaxyStoreInAppReviewManager(
+    GalaxyStoreInAppReviewInitParams(requireNotNull(AndroidServiceLocator.activity))
 )

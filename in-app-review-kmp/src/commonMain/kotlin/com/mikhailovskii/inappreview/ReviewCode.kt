@@ -1,14 +1,14 @@
 package com.mikhailovskii.inappreview
 
-enum class ReviewCode(val code: Int) {
+enum class ReviewCode(vararg val codes: Int) {
     NO_ERROR(0),
     STORE_NOT_FOUND(-1),
     INVALID_REQUEST(-2),
-    INTERNAL_ERROR(-100),
+    INTERNAL_ERROR(-100, 2000),
     APP_NOT_RELEASED(101),
     RATING_SUBMITTED(102),
     COMMENT_SUBMITTED(103),
-    SIGN_IN_STATUS_INVALID(104),
+    SIGN_IN_STATUS_INVALID(104, 5000),
     CONDITIONS_NOT_MET(105),
     COMMENTING_DISABLED(106),
     COMMENTING_NOT_SUPPORTED(107),
@@ -18,9 +18,12 @@ enum class ReviewCode(val code: Int) {
     APP_BANNED(202),
     REQUEST_LIMIT_REACHED(203),
     REVIEW_EXISTS(204),
-    INVALID_REVIEW_INFO(205);
+    INVALID_REVIEW_INFO(205),
+    MANDATORY_PARAMETER_NOT_AVAILABLE(1000),
+    CONTENT_NOT_AVAILABLE(4002),
+    REPEATED_REQUEST_IN_10_MINUTES(100015);
 
     companion object {
-        fun fromCode(code: Int) = entries.first { it.code == code }
+        fun fromCode(code: Int) = entries.firstOrNull { it.codes.contains(code) } ?: INTERNAL_ERROR
     }
 }
