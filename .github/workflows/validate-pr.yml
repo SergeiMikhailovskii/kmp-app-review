@@ -22,6 +22,14 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Set version
+        run: |
+          VERSION=$(git describe --tags `git rev-list --tags --max-count=1`)
+          major=$(echo $VERSION | cut -d'.' -f1)
+          minor=$(echo $VERSION | cut -d'.' -f2)
+          fix=$(echo $VERSION | cut -d'.' -f3)
+          echo "LIBRARY_VERSION=$major.$minor.$(($fix + 1))-SNAPSHOT-BUILD-${{ github.run_id }}" >> "$GITHUB_ENV"
+
       - name: Build
         run: |
-          ./gradlew :in-app-review-kmp:build --no-daemon
+          ./gradlew buildAndPublish --no-daemon

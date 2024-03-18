@@ -70,3 +70,9 @@ publishing {
         }
     }
 }
+
+tasks.register("buildAndPublish", DefaultTask::class) {
+    dependsOn("build")
+    dependsOn("publish")
+    tasks.findByPath("publish")?.mustRunAfter("build")
+}
