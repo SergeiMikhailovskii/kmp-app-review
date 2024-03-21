@@ -4,7 +4,6 @@ plugins {
     id("maven-publish")
 }
 
-group = "com.mikhailovskii.kmp"
 version = System.getenv("LIBRARY_VERSION") ?: libs.versions.pluginVersion.get()
 
 kotlin {
@@ -57,7 +56,6 @@ publishing {
     }
     repositories {
         maven {
-            name = "kmp-in-app-review"
             url = uri("https://maven.pkg.github.com/SergeiMikhailovskii/kmp-app-review")
             credentials {
                 username = System.getenv("GITHUB_USER")
