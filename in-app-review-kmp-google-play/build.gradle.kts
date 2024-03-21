@@ -8,13 +8,7 @@ plugins {
 version = System.getenv("LIBRARY_VERSION") ?: libs.versions.pluginVersion.get()
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
-    }
+    androidTarget { publishLibraryVariants("release", "debug") }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -29,7 +23,7 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.review.ktx)

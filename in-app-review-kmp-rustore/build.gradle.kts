@@ -8,11 +8,7 @@ version = System.getenv("LIBRARY_VERSION") ?: libs.versions.pluginVersion.get()
 
 kotlin {
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+        compilations.all { publishLibraryVariants("release", "debug") }
     }
 
     listOf(
