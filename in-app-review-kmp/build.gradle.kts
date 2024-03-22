@@ -20,7 +20,6 @@ kotlin {
         homepage = "https://github.com/SergeiMikhailovskii/kmp-app-review"
         version = project.version.toString()
         ios.deploymentTarget = "12.0"
-        podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "inAppReviewKMP"
             isStatic = true
