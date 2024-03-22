@@ -4,6 +4,7 @@ plugins {
     id("maven-publish")
 }
 
+group = "com.mikhailovskii.kmp"
 version = System.getenv("LIBRARY_VERSION") ?: libs.versions.pluginVersion.get()
 
 kotlin {
