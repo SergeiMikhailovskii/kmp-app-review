@@ -13,6 +13,8 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+    jvmToolchain(17)
+
     cocoapods {
         summary = "in-app-review"
         homepage = "https://github.com/SergeiMikhailovskii/kmp-app-review"

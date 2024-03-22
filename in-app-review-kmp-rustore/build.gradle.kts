@@ -22,6 +22,8 @@ kotlin {
         }
     }
 
+    jvmToolchain(17)
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.rustore.review)

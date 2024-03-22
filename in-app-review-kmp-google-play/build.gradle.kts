@@ -13,6 +13,8 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+    jvmToolchain(17)
+
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
