@@ -8,7 +8,9 @@ plugins {
 }
 
 tasks.register("buildAndPublish", DefaultTask::class) {
-    dependsOn(":in-app-review-kmp:build")
-    dependsOn(":in-app-review-kmp:publish")
-    tasks.findByPath(":in-app-review-kmp:publish")?.mustRunAfter(":in-app-review-kmp:build")
+    dependsOn(":in-app-review-kmp:buildAndPublish")
+    dependsOn(":in-app-review-kmp-google-play:buildAndPublish")
+    dependsOn(":in-app-review-kmp-rustore:buildAndPublish")
+    tasks.findByPath(":in-app-review-kmp-google-play:buildAndPublish")?.mustRunAfter(":in-app-review-kmp:build")
+    tasks.findByPath(":in-app-review-kmp-rustore:buildAndPublish")?.mustRunAfter(":in-app-review-kmp:build")
 }

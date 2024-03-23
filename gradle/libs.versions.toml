@@ -1,12 +1,13 @@
 [versions]
-pluginVersion = "1.0.0-rc01"
+pluginVersion = "2.0.0-rc01"
 agp = "8.3.1"
 kotlin = "1.9.23"
 compose = "1.6.3"
-compose-compiler = "1.5.4"
+compose-compiler = "1.5.11-dev-k1.9.23-96ef9dc6af1"
 compose-material3 = "1.2.1"
 androidx-activity = "1.8.2"
 androidx-fragment = "1.6.2"
+rustore-review = "2.0.0"
 reviewKtx = "2.0.1"
 coroutines = "1.8.0"
 
@@ -19,6 +20,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
 review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
+rustore-review = { module = "ru.rustore.sdk:review", version.ref = "rustore-review" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutines" }
 

@@ -8,7 +8,7 @@ kotlin {
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
         }
     }
@@ -32,7 +32,7 @@ kotlin {
             implementation(libs.androidx.activity)
         }
         commonMain.dependencies {
-            implementation(projects.inAppReviewKmp)
+            implementation(projects.inAppReviewKmpRustore)
             implementation(libs.coroutines.core)
         }
     }
@@ -42,6 +42,6 @@ android {
     namespace = "com.mikhailovskii.inappreviewkmp_sample"
     compileSdk = 34
     defaultConfig {
-        minSdk = 21
+        minSdk = 26
     }
 }

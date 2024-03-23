@@ -1,3 +1,0 @@
-package com.mikhailovskii.inappreview.params
-
-expect class DefaultInAppReviewInitParams

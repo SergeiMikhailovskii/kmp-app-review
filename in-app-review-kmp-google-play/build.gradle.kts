@@ -17,23 +17,23 @@ kotlin {
     jvmToolchain(17)
 
     cocoapods {
-        summary = "in-app-review"
-        homepage = "https://github.com/SergeiMikhailovskii/kmp-app-review"
-        version = project.version.toString()
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        version = "1.0"
         ios.deploymentTarget = "12.0"
         framework {
-            baseName = "inAppReviewKMP"
+            baseName = "in-app-review-kmp-google-play"
             isStatic = true
         }
     }
 
     sourceSets {
         androidMain.dependencies {
-            implementation(libs.androidx.activity)
-            implementation(libs.androidx.fragment)
+            implementation(libs.review.ktx)
+            implementation(libs.coroutines.play.services)
         }
         commonMain.dependencies {
-            api(libs.coroutines.core)
+            api(projects.inAppReviewKmp)
         }
     }
 }
@@ -43,10 +43,6 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 21
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
