@@ -28,10 +28,10 @@ jobs:
           major=$(echo $VERSION | cut -d'.' -f1)
           minor=$(echo $VERSION | cut -d'.' -f2)
           fix=$(echo $VERSION | cut -d'.' -f3)
-          if [[ ${{ github.event.head_commit.message }} == *"[Major]"* ]]
+          if [[ "${{ github.event.head_commit.message }}" == *"[Major]"* ]]
           then
             echo "LIBRARY_VERSION=$(($major + 1)).0.0" >> "$GITHUB_ENV"
-          elif [[ ${{ github.event.head_commit.author.name }} == "renovate[bot]" ]]
+          elif [[ "${{ github.event.head_commit.author.name }}" == "renovate[bot]" ]]
           then
             echo "LIBRARY_VERSION=$major.$minor.$(($fix + 1))" >> "$GITHUB_ENV"
           else
