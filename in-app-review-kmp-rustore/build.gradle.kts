@@ -14,6 +14,4 @@ kotlin {
     }
 }
 
-kmpPublishingToMaven {
-    url = "https://maven.pkg.github.com/SergeiMikhailovskii/kmp-app-review"
-}
+applyPublishing()

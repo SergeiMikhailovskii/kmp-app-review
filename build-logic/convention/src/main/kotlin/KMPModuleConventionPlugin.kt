@@ -39,7 +39,6 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
                     targetCompatibility = JavaVersion.VERSION_17
                 }
             }
-            val publishData = extensions.create("kmpPublishingToMaven", KMPModulePublishExtension::class.java)
             extensions.configure<PublishingExtension> {
                 publications {
                     matching {
@@ -52,15 +51,6 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
                         tasks.withType<AbstractPublishToMaven>()
                             .matching { it.publication == this@all }
                             .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
-                    }
-                }
-                repositories {
-                    maven {
-                        url = uri(publishData.url)
-                        credentials {
-                            username = System.getenv("GITHUB_USER")
-                            password = System.getenv("GITHUB_API_KEY")
-                        }
                     }
                 }
             }
