@@ -13,5 +13,3 @@ kotlin {
         }
     }
 }
-
-applyPublishing()

@@ -53,6 +53,15 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
                             .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
                     }
                 }
+                repositories {
+                    maven {
+                        url = uri("https://maven.pkg.github.com/SergeiMikhailovskii/kmp-app-review")
+                        credentials {
+                            username = System.getenv("GITHUB_USER")
+                            password = System.getenv("GITHUB_API_KEY")
+                        }
+                    }
+                }
             }
             tasks.register("buildAndPublish", DefaultTask::class) {
                 dependsOn("build")
