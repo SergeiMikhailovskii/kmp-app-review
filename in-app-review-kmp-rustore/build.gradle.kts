@@ -1,30 +1,9 @@
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    id("com.mikhailovskii.kmp.module")
     id("maven-publish")
 }
 
-group = "com.mikhailovskii.kmp"
-version = System.getenv("LIBRARY_VERSION") ?: libs.versions.pluginVersion.get()
-
 kotlin {
-    androidTarget {
-        compilations.all { publishLibraryVariants("release", "debug") }
-    }
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "in-app-review-kmp-rustore"
-            isStatic = true
-        }
-    }
-
-    jvmToolchain(17)
-
     sourceSets {
         androidMain.dependencies {
             implementation(libs.rustore.review)
@@ -32,14 +11,6 @@ kotlin {
         commonMain.dependencies {
             api(projects.inAppReviewKmp)
         }
-    }
-}
-
-android {
-    namespace = "com.mikhailovskii.inappreview"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 26
     }
 }
 

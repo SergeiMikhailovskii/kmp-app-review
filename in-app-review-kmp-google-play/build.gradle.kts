@@ -1,32 +1,9 @@
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinCocoapods)
-    alias(libs.plugins.androidLibrary)
+    id("com.mikhailovskii.kmp.module")
     id("maven-publish")
 }
 
-group = "com.mikhailovskii.kmp"
-version = System.getenv("LIBRARY_VERSION") ?: libs.versions.pluginVersion.get()
-
 kotlin {
-    androidTarget { publishLibraryVariants("release", "debug") }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
-    jvmToolchain(17)
-
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        version = "1.0"
-        ios.deploymentTarget = "12.0"
-        framework {
-            baseName = "in-app-review-kmp-google-play"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         androidMain.dependencies {
             implementation(libs.review.ktx)
@@ -35,14 +12,6 @@ kotlin {
         commonMain.dependencies {
             api(projects.inAppReviewKmp)
         }
-    }
-}
-
-android {
-    namespace = "com.mikhailovskii.inappreview"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 21
     }
 }
 

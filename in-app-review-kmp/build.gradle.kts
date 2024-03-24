@@ -1,32 +1,9 @@
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinCocoapods)
-    alias(libs.plugins.androidLibrary)
+    id("com.mikhailovskii.kmp.module")
     id("maven-publish")
 }
 
-group = "com.mikhailovskii.kmp"
-version = System.getenv("LIBRARY_VERSION") ?: libs.versions.pluginVersion.get()
-
 kotlin {
-    androidTarget { publishLibraryVariants("release", "debug") }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
-    jvmToolchain(17)
-
-    cocoapods {
-        summary = "in-app-review"
-        homepage = "https://github.com/SergeiMikhailovskii/kmp-app-review"
-        version = project.version.toString()
-        ios.deploymentTarget = "12.0"
-        framework {
-            baseName = "inAppReviewKMP"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         androidMain.dependencies {
             implementation(libs.androidx.activity)
@@ -35,18 +12,6 @@ kotlin {
         commonMain.dependencies {
             api(libs.coroutines.core)
         }
-    }
-}
-
-android {
-    namespace = "com.mikhailovskii.inappreview"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 21
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
