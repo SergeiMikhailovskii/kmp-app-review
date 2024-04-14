@@ -1,6 +1,6 @@
 [versions]
 pluginVersion = "2.0.0-rc01"
-agp = "8.3.1"
+agp = "8.3.2"
 kotlin = "1.9.23"
 compose = "1.6.5"
 compose-compiler = "1.5.11-dev-k1.9.23-96ef9dc6af1"
