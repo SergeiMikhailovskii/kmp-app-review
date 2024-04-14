@@ -10,30 +10,14 @@ Library that allows to launch in app (or in market) review from the KMP shared c
 Android and iOS
 
 ## How to integrate?
-1) Add the repository in settings.gradle.kts:
+1) Add the dependency you need into `commonMain`:
 ```kotlin
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url = uri("https://maven.pkg.github.com/SergeiMikhailovskii/kmp-app-review")
-            credentials {
-               username = System.getenv("GITHUB_USER")
-               password = System.getenv("GITHUB_API_KEY")
-            }
-        }
-    }
-}
-```
-2) Add the dependency you need into `commonMain`:
-```kotlin
-implementation("com.mikhailovskii.kmp:in-app-review-kmp:$latest_tag") // Amazon, App Gallery, Galaxy Store
-implementation("com.mikhailovskii.kmp:in-app-review-kmp-google-play:$latest_tag") // Google Play + Amazon, App Gallery, Galaxy Store
-implementation("com.mikhailovskii.kmp:in-app-review-kmp-rustore:$latest_tag") // RuStore + Amazon, App Gallery, Galaxy Store
+implementation("io.github.sergeimikhailovskii:in-app-review-kmp:$latest_tag") // Amazon, App Gallery, Galaxy Store
+implementation("io.github.sergeimikhailovskii:in-app-review-kmp-google-play:$latest_tag") // Google Play + Amazon, App Gallery, Galaxy Store
+implementation("io.github.sergeimikhailovskii:in-app-review-kmp-rustore:$latest_tag") // RuStore + Amazon, App Gallery, Galaxy Store
 ```
 
-3) Create an instance of class that implements `InAppReviewDelegate` interface.
+2) Create an instance of class that implements `InAppReviewDelegate` interface.
    Now library supports 3 implementations (depends on the market u need): 
       - `AmazonInAppReviewManager`
       - `AppGalleryInAppReviewManager`
@@ -42,7 +26,7 @@ implementation("com.mikhailovskii.kmp:in-app-review-kmp-rustore:$latest_tag") //
       - `GooglePlayInAppReviewManager`
       - `RuStoreInAppReviewManager`
 
-4) To launch in-app review call
+3) To launch in-app review call
    ```kotlin
    fun requestInAppReview(): Flow<ReviewCode>
    ```
@@ -56,7 +40,7 @@ implementation("com.mikhailovskii.kmp:in-app-review-kmp-rustore:$latest_tag") //
    - For Google Play used [in-app-review api](https://developer.android.com/guide/playcore/in-app-review)
    - For RuStore used [in-app-review-api](https://www.rustore.ru/help/sdk/reviews-ratings/kotlin-java/2-0-0)
   
-5) To launch in-market review call
+4) To launch in-market review call
    ```kotlin
    fun requestInMarketReview(): Flow<ReviewCode>
    ```
@@ -70,6 +54,34 @@ this method registers activity result listener so u should invoke it before the 
 
 ### Note 2
 RuStore's impl has minSdk=26, other dependencies have minSdk=21
+
+## Breaking changes in the version 3.0
+1) Since new artifacts versions are published to the MavenCentral instead of Github Maven, the `group id` was changed:
+```diff
+dependencies {
++  implementation("io.github.sergeimikhailovskii:in-app-review-kmp:$latest_tag") // Amazon, App Gallery, Galaxy Store
+-  implementation("com.mikhailovskii.kmp:in-app-review-kmp:$latest_tag") // Amazon, App Gallery, Galaxy Store
++  implementation("io.github.sergeimikhailovskii:in-app-review-kmp-google-play:$latest_tag") // Google Play + Amazon, App Gallery, Galaxy Store
+-  implementation("com.mikhailovskii.kmp:in-app-review-kmp-google-play:$latest_tag") // Google Play + Amazon, App Gallery, Galaxy Store
++  implementation("io.github.sergeimikhailovskii:in-app-review-kmp-rustore:$latest_tag")
+-  implementation("com.mikhailovskii.kmp:in-app-review-kmp-rustore:$latest_tag") // RuStore + Amazon, App Gallery, Galaxy Store
+}
+```
+2) Separate repository can be deleted
+```diff
+dependencyResolutionManagement {
+    repositories {
++        mavenCentral()
+-        maven {
+-            url = uri("https://maven.pkg.github.com/SergeiMikhailovskii/kmp-app-review")
+-            credentials {
+-               username = System.getenv("GITHUB_USER")
+-               password = System.getenv("GITHUB_API_KEY")
+-            }
+-        }
+    }
+}
+```
 
 ## Breaking changes in the version 2.0
 

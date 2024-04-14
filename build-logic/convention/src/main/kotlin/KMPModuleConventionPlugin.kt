@@ -73,7 +73,7 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
                 }
             }
             extensions.configure<MavenPublishBaseExtension> {
-                publishToMavenCentral(SonatypeHost.S01)
+                publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
                 signAllPublications()
             }
             tasks.register("buildAndPublish", DefaultTask::class) {
