@@ -1,20 +1,25 @@
 package com.mikhailovskii.inappreview.googlePlay
 
 import com.google.android.play.core.review.ReviewException
+import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.mikhailovskii.inappreview.InAppReviewDelegate
 import com.mikhailovskii.inappreview.ReviewCode
 import com.mikhailovskii.inappreview.extensions.openMarket
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
-class GooglePlayInAppReviewManager(private val params: GooglePlayInAppReviewInitParams) : InAppReviewDelegate {
+class GooglePlayInAppReviewManager(private val params: GooglePlayInAppReviewInitParams) :
+    InAppReviewDelegate by GooglePlayInAppReviewManagerImpl(params, ReviewManagerFactory.create(params.activity))
 
-    override fun requestInAppReview(): Flow<ReviewCode> = flow {
+internal class GooglePlayInAppReviewManagerImpl(
+    private val params: GooglePlayInAppReviewInitParams,
+    private val manager: ReviewManager
+) : InAppReviewDelegate {
+
+    override fun requestInAppReview() = flow {
         val activity = params.activity
-        val manager = ReviewManagerFactory.create(activity)
         val reviewInfo = manager.requestReviewFlow().await()
         manager.launchReviewFlow(activity, reviewInfo).await()
         emit(ReviewCode.NO_ERROR)
