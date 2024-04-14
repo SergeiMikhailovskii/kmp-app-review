@@ -7,8 +7,11 @@ jobs:
   build_project:
     runs-on: macos-latest
     env:
-      GITHUB_USER: ${{ secrets.USER }}
-      GITHUB_API_KEY: ${{ secrets.PAT }}
+      ORG_GRADLE_PROJECT_mavenCentralUsername: ${{secrets.SONATYPE_NEXUS_USERNAME}}
+      ORG_GRADLE_PROJECT_mavenCentralPassword: ${{secrets.SONATYPE_NEXUS_PASSWORD}}
+      ORG_GRADLE_PROJECT_signingInMemoryKey: ${{secrets.SIGNING_SECRET_KEY_RING}}
+      ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{secrets.SIGNING_KEY_ID}}
+      ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{secrets.SIGNING_PASSWORD}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1

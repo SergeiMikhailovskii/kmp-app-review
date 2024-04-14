@@ -14,4 +14,5 @@ gradlePlugin {
 dependencies {
     compileOnly(libs.android.gradle)
     compileOnly(libs.kotlin.gradle.plugin)
+    compileOnly(libs.maven.publish.plugin)
 }

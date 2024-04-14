@@ -1,10 +1,12 @@
 import com.android.build.gradle.LibraryExtension
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.DefaultTask
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
-import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
+import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
@@ -16,9 +18,9 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply(extensions.getPluginId("androidLibrary"))
                 apply(extensions.getPluginId("kotlinMultiplatform"))
-                apply("maven-publish")
+                apply(extensions.getPluginId("mavenPublish"))
             }
-            group = "com.mikhailovskii.kmp"
+            group = "io.github.sergeimikhailovskii"
             version = System.getenv("LIBRARY_VERSION") ?: extensions.getVersion("pluginVersion")
             extensions.configure<KotlinMultiplatformExtension> {
                 androidTarget { publishLibraryVariants("release", "debug") }
@@ -40,28 +42,39 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
                 }
             }
             extensions.configure<PublishingExtension> {
-                publications {
-                    matching {
-                        return@matching it.name in listOf(
-                            "iosArm64",
-                            "iosX64",
-                            "kotlinMultiplatform"
-                        )
-                    }.all {
-                        tasks.withType<AbstractPublishToMaven>()
-                            .matching { it.publication == this@all }
-                            .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
-                    }
-                }
-                repositories {
-                    maven {
-                        url = uri("https://maven.pkg.github.com/SergeiMikhailovskii/kmp-app-review")
-                        credentials {
-                            username = System.getenv("GITHUB_USER")
-                            password = System.getenv("GITHUB_API_KEY")
+                publications.withType<MavenPublication> {
+                    pom {
+                        name.set("kmp-in-app-review")
+                        description.set("Library that allows to launch in app (or in market) review from the KMP shared code")
+                        url.set("https://github.com/SergeiMikhailovskii/kmp-app-review")
+
+                        licenses {
+                            license {
+                                name.set("The Apache License, Version 2.0")
+                                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                                distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                            }
+                        }
+
+                        developers {
+                            developer {
+                                id.set("SergeiMikhailovskii")
+                                name.set("Sergei Mikhailovskii")
+                                email.set("mikhailovskii.s@gmail.com")
+                            }
+                        }
+
+                        scm {
+                            url.set("https://github.com/SergeiMikhailovskii/kmp-app-review")
+                            connection.set("scm:git:git://github.com/SergeiMikhailovskii/kmp-app-review.git")
+                            developerConnection.set("scm:git:git://github.com/SergeiMikhailovskii/kmp-app-review.git")
                         }
                     }
                 }
+            }
+            extensions.configure<MavenPublishBaseExtension> {
+                publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+                signAllPublications()
             }
             tasks.register("buildAndPublish", DefaultTask::class) {
                 dependsOn("build")

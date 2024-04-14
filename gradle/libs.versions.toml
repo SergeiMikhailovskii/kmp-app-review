@@ -10,6 +10,7 @@ androidx-fragment = "1.6.2"
 rustore-review = "2.0.0"
 reviewKtx = "2.0.1"
 coroutines = "1.8.0"
+mavenPublish = "0.28.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
@@ -26,6 +27,7 @@ coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-
 
 android-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+maven-publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "mavenPublish" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -33,3 +35,4 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+mavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }

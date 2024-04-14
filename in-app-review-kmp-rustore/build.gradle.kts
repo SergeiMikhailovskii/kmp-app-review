@@ -1,6 +1,5 @@
 plugins {
     id("com.mikhailovskii.kmp.module")
-    id("maven-publish")
 }
 
 kotlin {
