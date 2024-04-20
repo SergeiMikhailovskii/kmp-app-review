@@ -2,7 +2,7 @@
 pluginVersion = "2.0.0-rc01"
 agp = "8.3.2"
 kotlin = "1.9.23"
-compose = "1.6.5"
+compose = "1.6.6"
 compose-compiler = "1.5.11-dev-k1.9.23-96ef9dc6af1"
 compose-material3 = "1.2.1"
 androidx-activity = "1.8.2"
