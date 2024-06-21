@@ -10,7 +10,7 @@ androidx-fragment = "1.8.0"
 rustore-review = "2.0.0"
 reviewKtx = "2.0.1"
 coroutines = "1.8.1"
-mavenPublish = "0.28.0"
+mavenPublish = "0.29.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
