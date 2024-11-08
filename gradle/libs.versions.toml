@@ -1,16 +1,16 @@
 [versions]
 pluginVersion = "2.0.0-rc01"
-agp = "8.3.2"
-kotlin = "1.9.23"
-compose = "1.6.5"
+agp = "8.4.2"
+kotlin = "2.0.21"
+compose = "1.6.8"
 compose-compiler = "1.5.11-dev-k1.9.23-96ef9dc6af1"
 compose-material3 = "1.2.1"
-androidx-activity = "1.8.2"
-androidx-fragment = "1.6.2"
+androidx-activity = "1.9.0"
+androidx-fragment = "1.8.2"
 rustore-review = "2.0.0"
 reviewKtx = "2.0.1"
-coroutines = "1.8.0"
-mavenPublish = "0.28.0"
+coroutines = "1.8.1"
+mavenPublish = "0.29.0"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
