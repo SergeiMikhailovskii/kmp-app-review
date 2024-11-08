@@ -10,8 +10,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
-class GooglePlayInAppReviewManager(private val params: GooglePlayInAppReviewInitParams) :
-    InAppReviewDelegate by GooglePlayInAppReviewManagerImpl(params, ReviewManagerFactory.create(params.activity))
+@Suppress("FunctionName")
+fun GooglePlayInAppReviewManager(params: GooglePlayInAppReviewInitParams):
+        InAppReviewDelegate = GooglePlayInAppReviewManagerImpl(params, ReviewManagerFactory.create(params.activity))
 
 internal class GooglePlayInAppReviewManagerImpl(
     private val params: GooglePlayInAppReviewInitParams,

@@ -1,4 +1,6 @@
 [versions]
+coreKtx = "1.6.1"
+junitKtx = "1.2.1"
 pluginVersion = "2.0.0-rc01"
 agp = "8.4.2"
 kotlin = "2.0.21"
@@ -7,6 +9,7 @@ compose-compiler = "1.5.11-dev-k1.9.23-96ef9dc6af1"
 compose-material3 = "1.2.1"
 androidx-activity = "1.9.0"
 androidx-fragment = "1.8.2"
+runner = "1.6.2"
 rustore-review = "2.0.0"
 reviewKtx = "2.0.1"
 coroutines = "1.8.1"
@@ -15,11 +18,15 @@ mavenPublish = "0.29.0"
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-activity = { module = "androidx.activity:activity", version.ref = "androidx-activity" }
+androidx-core-ktx = { module = "androidx.test:core-ktx", version.ref = "coreKtx" }
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
+androidx-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "junitKtx" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "compose-material3" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
 rustore-review = { module = "ru.rustore.sdk:review", version.ref = "rustore-review" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
