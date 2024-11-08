@@ -28,7 +28,6 @@ class GooglePlayInAppReviewManagerTests {
         Dispatchers.setMain(testDispatcher)
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun requestInAppReview() = runTest {
         withTestActivity {
@@ -44,6 +43,22 @@ class GooglePlayInAppReviewManagerTests {
             }
 
             advanceUntilIdle()
+        }
+    }
+
+    @Test
+    fun requestInMarketReview() = runTest {
+        withTestActivity {
+            val manager = GooglePlayInAppReviewManagerImpl(
+                params = GooglePlayInAppReviewInitParams(it),
+                manager = FakeReviewManager(it)
+            )
+
+            val events = mutableListOf<ReviewCode>()
+            launch {
+                manager.requestInMarketReview().toList(events)
+                assertEquals(listOf(ReviewCode.NO_ERROR), events)
+            }
         }
     }
 
