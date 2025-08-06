@@ -7,3 +7,4 @@ xcuserdata/
 iosApp/Podfile.lock
 iosApp/Pods
 in-app-review-kmp-sample/in_app_review_kmp_sample.podspec
+.kotlin
