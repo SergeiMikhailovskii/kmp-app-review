@@ -1,6 +1,5 @@
 import com.android.build.gradle.LibraryExtension
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.DefaultTask
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -73,7 +72,7 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
                 }
             }
             extensions.configure<MavenPublishBaseExtension> {
-                publishToMavenCentral(host = SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
+                publishToMavenCentral(automaticRelease = true)
                 signAllPublications()
             }
             tasks.register("buildAndPublish", DefaultTask::class) {
