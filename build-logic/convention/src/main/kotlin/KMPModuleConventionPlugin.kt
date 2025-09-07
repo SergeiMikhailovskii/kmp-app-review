@@ -27,7 +27,7 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
                 iosArm64()
                 iosSimulatorArm64()
                 applyDefaultHierarchyTemplate()
-                jvmToolchain(17)
+                jvmToolchain(24)
             }
             extensions.configure<LibraryExtension> {
                 namespace = "com.mikhailovskii.inappreview"
@@ -36,8 +36,8 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
                     minSdk = 21
                 }
                 compileOptions {
-                    sourceCompatibility = JavaVersion.VERSION_17
-                    targetCompatibility = JavaVersion.VERSION_17
+                    sourceCompatibility = JavaVersion.VERSION_24
+                    targetCompatibility = JavaVersion.VERSION_24
                 }
             }
             extensions.configure<PublishingExtension> {
