@@ -1,11 +1,15 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.kotlinCocoapods)
-    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
-    androidTarget()
+    androidLibrary {
+        namespace = "com.mikhailovskii.inappreviewkmp_sample"
+        compileSdk = 36
+        minSdk = 26
+    }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -29,13 +33,5 @@ kotlin {
             implementation(projects.inAppReviewKmpRustore)
             implementation(libs.coroutines.core)
         }
-    }
-}
-
-android {
-    namespace = "com.mikhailovskii.inappreviewkmp_sample"
-    compileSdk = 34
-    defaultConfig {
-        minSdk = 26
     }
 }

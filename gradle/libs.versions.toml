@@ -1,6 +1,6 @@
 [versions]
 pluginVersion = "2.0.0-rc01"
-agp = "8.12.0"
+agp = "9.0.0"
 kotlin = "2.2.20"
 compose = "1.9.1"
 compose-compiler = "1.5.11-dev-k1.9.23-96ef9dc6af1"
@@ -32,7 +32,7 @@ maven-publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
