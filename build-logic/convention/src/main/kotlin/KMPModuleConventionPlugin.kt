@@ -1,9 +1,10 @@
-import com.android.build.gradle.LibraryExtension
+import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryExtension
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import org.gradle.api.Action
 import org.gradle.api.DefaultTask
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.configure
@@ -15,30 +16,25 @@ private class KMPModuleConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply(extensions.getPluginId("androidLibrary"))
                 apply(extensions.getPluginId("kotlinMultiplatform"))
+                apply(extensions.getPluginId("androidKotlinMultiplatformLibrary"))
                 apply(extensions.getPluginId("mavenPublish"))
             }
             group = "io.github.sergeimikhailovskii"
             version = System.getenv("LIBRARY_VERSION") ?: extensions.getVersion("pluginVersion")
             extensions.configure<KotlinMultiplatformExtension> {
-                androidTarget { publishLibraryVariants("release", "debug") }
+
+                extensions.configure<KotlinMultiplatformAndroidLibraryExtension>("android") {
+                    namespace = "com.mikhailovskii.inappreview"
+
+                    compileSdk = 36
+                    minSdk = 21
+                }
                 iosX64()
                 iosArm64()
                 iosSimulatorArm64()
                 applyDefaultHierarchyTemplate()
                 jvmToolchain(24)
-            }
-            extensions.configure<LibraryExtension> {
-                namespace = "com.mikhailovskii.inappreview"
-                compileSdk = 34
-                defaultConfig {
-                    minSdk = 21
-                }
-                compileOptions {
-                    sourceCompatibility = JavaVersion.VERSION_24
-                    targetCompatibility = JavaVersion.VERSION_24
-                }
             }
             extensions.configure<PublishingExtension> {
                 publications.withType<MavenPublication> {
