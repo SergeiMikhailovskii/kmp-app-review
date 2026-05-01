@@ -1,0 +1,64 @@
+name: Publish SNAPSHOT
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: >
+          Full Maven version, must end with -SNAPSHOT (e.g. 1.2.0-SNAPSHOT).
+          Leave empty to use (latest git tag patch + 1)-SNAPSHOT.
+        required: false
+        type: string
+        default: ''
+
+jobs:
+  publish_snapshot:
+    runs-on: macos-latest
+    env:
+      ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
+      ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
+      ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_SECRET_KEY_RING }}
+      ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID }}
+      ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+        with:
+          fetch-tags: true
+          fetch-depth: 0
+
+      - name: Setup java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '24'
+
+      - name: Set version
+        env:
+          VERSION_INPUT: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          if [[ -n "${VERSION_INPUT// }" ]]; then
+            V="${VERSION_INPUT// }"
+            case "$V" in
+              *-SNAPSHOT) ;;
+              *)
+                echo "::error::Version must end with -SNAPSHOT (got: $V)"
+                exit 1
+                ;;
+            esac
+            echo "LIBRARY_VERSION=$V" >> "$GITHUB_ENV"
+            echo "Publishing snapshot version: $V"
+          else
+            VERSION=$(git describe --tags "$(git rev-list --tags --max-count=1)")
+            major=$(echo "$VERSION" | cut -d'.' -f1)
+            minor=$(echo "$VERSION" | cut -d'.' -f2)
+            fix=$(echo "$VERSION" | cut -d'.' -f3)
+            SNAP="$major.$minor.$((fix + 1))-SNAPSHOT"
+            echo "LIBRARY_VERSION=$SNAP" >> "$GITHUB_ENV"
+            echo "Publishing snapshot version: $SNAP"
+          fi
+
+      - name: Build and publish snapshot
+        run: |
+          ./gradlew buildAndPublish --no-daemon
