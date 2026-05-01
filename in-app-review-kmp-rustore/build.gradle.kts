@@ -11,4 +11,8 @@ kotlin {
             api(projects.inAppReviewKmp)
         }
     }
+
+    android {
+        namespace = "com.mikhailovskii.inappreview.rustore"
+    }
 }
